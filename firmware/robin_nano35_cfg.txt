@@ -10,17 +10,17 @@
 >cfg_filament_det0_trigger_level   0       # Trigger level configuration of E0 filament detection interface (1: high-level trigger; 0: low-level trigger)
 >cfg_filament_det1_trigger_level   0       # Trigger level configuration of E1 filament detection interface (1: high-level trigger; 0: low-level trigger)
 
->cfg_filament_load_length       100         # Length of "change filament" feed
+>cfg_filament_load_length       450         # Length of "change filament" feed
 >cfg_filament_load_speed        800         # "Change filament" feed speed configuration (mm/min)
 >cfg_filament_load_limit_temperature 200    # Minimum limit temperature configuration for "change filament" feeding
 
->cfg_filament_unload_length     100         # Length of "change filament" unload
+>cfg_filament_unload_length     450         # Length of "change filament" unload
 >cfg_filament_unload_speed      800         # "Change filament" unload speed configuration (mm/min)
 >cfg_filament_unload_limit_temperature 200  # Minimum limit temperature configuration for "change filament" unloading
 
 #=========================== Leveling Button Configuration ====================
 
->cfg_leveling_mode              1           # Leveling mode configuration《1: automatic leveling; 0: manual leveling》
+>cfg_leveling_mode              1           # Leveling mode configuration "1: automatic leveling; 0: manual leveling"
 
 #=========================== Manual Leveling =================================
 
@@ -53,31 +53,31 @@
 
 # Button 1~Button 7 customization commands
 # Each command must be separated by a semicolon ";"
->moreitem_button1_cmd:G28 X0;G28 Y0;G28 Z0;
+>moreitem_button1_cmd:M140 S60;M104 S200;
 
->moreitem_button2_cmd:G28 X0;G28 Y0;G28 Z0;
+>moreitem_button2_cmd:M140 S85;M104 S240;
 
->moreitem_button3_cmd:G28 X0;G28 Y0;G28 Z0;
+>moreitem_button3_cmd:M140 S0;M104 S0;
 
->moreitem_button4_cmd:G28 X0;G28 Y0;G28 Z0;
+>moreitem_button4_cmd:M84;
 
->moreitem_button5_cmd:G28 X0;G28 Y0;G28 Z0;
+>moreitem_button5_cmd:G28;
 
->moreitem_button6_cmd:G28 X0;G28 Y0;G28 Z0;
+>moreitem_button6_cmd:M303 E0 S210 U1;M500;
 
->moreitem_button7_cmd:G28 X0;G28 Y0;G28 Z0;
+>moreitem_button7_cmd:M303 E-1 S60 U1;M500;
 
 # Print interface "more" button quantity
 >morefunc_cnt                   7
 
 # Button 1~Button 6 function configuration
->morefunc1_cmd:G28;
->morefunc2_cmd:G28;
->morefunc3_cmd:G28;
->morefunc4_cmd:G28;
->morefunc5_cmd:G28;
->morefunc6_cmd:G28;
->morefunc7_cmd:G28;
+>morefunc1_cmd:M600;
+>morefunc2_cmd:M106 S255;
+>morefunc3_cmd:M106 S0;
+>morefunc4_cmd:M140 S0;M104 S0;
+>morefunc5_cmd:M117 Hello;
+>morefunc6_cmd:M117 Hello;
+>morefunc7_cmd:M117 Hello;
 
 #-------------------------------------------------------------
 ######## Display Customization (See manual for button and LOGO customization) ##########
@@ -115,7 +115,7 @@
 >X_MIN_POS 0
 >Y_MIN_POS 0
 >Z_MIN_POS 0
->X_MAX_POS 250
+>X_MAX_POS 230
 >Y_MAX_POS 230
 >Z_MAX_POS 250
 
@@ -188,13 +188,13 @@
 
 #======================== Thermal Protection Configuration =======================
 >THERMAL_PROTECTION_PERIOD               70      # Unit: seconds; Increase this value if Err7 occurs frequently.
->THERMAL_PROTECTION_HYSTERESIS           5       # Unit: ℃
+>THERMAL_PROTECTION_HYSTERESIS           5       # Unit: °C
 >WATCH_TEMP_PERIOD                       70      # Unit: seconds; Increase this value if Err5 occurs frequently.
->WATCH_TEMP_INCREASE                     2       # Unit: ℃
+>WATCH_TEMP_INCREASE                     2       # Unit: °C
 >THERMAL_PROTECTION_BED_PERIOD           70      # Unit: seconds; Increase this value if Err7 occurs frequently.
->THERMAL_PROTECTION_BED_HYSTERESIS       5       # Unit: ℃
+>THERMAL_PROTECTION_BED_HYSTERESIS       5       # Unit: °C
 >WATCH_BED_TEMP_PERIOD                   70      # Unit: seconds; Increase this value if Err6 occurs frequently.
->WATCH_BED_TEMP_INCREASE                 2       # Unit: ℃
+>WATCH_BED_TEMP_INCREASE                 2       # Unit: °C
 
 # Extruder temperature control parameters.
 >PIDTEMPE                                1       # Mode selection, 1: PID; 0: bang-bang
@@ -203,7 +203,7 @@
 >DEFAULT_Kd                              105.35  # D value
 
 # Heated bed temperature control parameters.
->PIDTEMPBED                              0       # Mode selection, 1: PID; 0: bang-bang
+>PIDTEMPBED                              1       # Mode selection, 1: PID; 0: bang-bang
 >DEFAULT_bedKp                           10.00   # P value
 >DEFAULT_bedKi                           0.023   # I value
 >DEFAULT_bedKd                           305.4   # D value
@@ -281,10 +281,10 @@
 
 #============================== WiFi Settings =============================
 >CFG_WIFI_MODE                          0       # WiFi mode (0: sta; 1: ap)
->CFG_WIFI_AP_NAME                       WiFitest    # WiFi name
->CFG_WIFI_KEY_CODE                      WANHAO  # WiFi password
+>CFG_WIFI_AP_NAME                       YOUR_WIFI_SSID    # WiFi name
+>CFG_WIFI_KEY_CODE                      YOUR_WIFI_PASSWORD  # WiFi password
 
->CFG_CLOUD_ENABLE                       1       # Cloud service enable (1: enable, 0: disable)
+>CFG_CLOUD_ENABLE                       0       # Cloud service enable (1: enable, 0: disable)
 >CFG_WIFI_CLOUD_HOST                    www.baizhongyun.cn  # Cloud service link
 >CFG_CLOUD_PORT                         10086   # Cloud service port
 
