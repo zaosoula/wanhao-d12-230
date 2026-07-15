@@ -1,0 +1,5 @@
+[submodule "mks-wifi-src"]
+	path = mks-wifi-src
+	url = https://github.com/zaosoula/MKS-WIFI.git
+	branch = master
+	ignore = all
