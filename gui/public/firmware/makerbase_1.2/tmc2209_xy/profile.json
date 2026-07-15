@@ -1,0 +1,57 @@
+{
+  "source": "https://formation.wanhaofrance.com/en_GB/slides/slide/firmware-d12-230-758",
+  "versions": [
+    {
+      "id": "v1.063",
+      "name": "V1.063",
+      "binFile": "Robin_nano35.bin",
+      "configFile": "robin_nano35_cfg.txt",
+      "assets": [
+        {
+          "source": "mks_pic",
+          "target": "mks_pic"
+        },
+        {
+          "source": "mks_font",
+          "target": "mks_font"
+        }
+      ],
+      "presets": [
+        {
+          "name": "Without 3DTouch",
+          "binFile": "Robin_nano35.bin",
+          "values": {
+            "BLTOUCH": "0",
+            "BED_LEVELING_METHOD": "0",
+            "Z_MIN_PROBE_PIN_MODE": "0",
+            "Z_SAFE_HOMING": "0",
+            "cfg_leveling_mode": "0",
+            "GRID_MAX_POINTS_X": "8",
+            "GRID_MAX_POINTS_Y": "8",
+            "BACK_PROBE_BED_POSITION": "480",
+            "FRONT_PROBE_BED_POSITION": "20",
+            "RIGHT_PROBE_BED_POSITION": "470",
+            "BED_MAXTEMP": "95"
+          }
+        },
+        {
+          "name": "With 3DTouch",
+          "binFile": "Robin_nano35_bl.bin",
+          "values": {
+            "BLTOUCH": "1",
+            "BED_LEVELING_METHOD": "3",
+            "Z_MIN_PROBE_PIN_MODE": "1",
+            "Z_SAFE_HOMING": "1",
+            "cfg_leveling_mode": "1",
+            "GRID_MAX_POINTS_X": "5",
+            "GRID_MAX_POINTS_Y": "5",
+            "BACK_PROBE_BED_POSITION": "210",
+            "FRONT_PROBE_BED_POSITION": "15",
+            "RIGHT_PROBE_BED_POSITION": "200",
+            "BED_MAXTEMP": "110"
+          }
+        }
+      ]
+    }
+  ]
+}
