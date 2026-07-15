@@ -49,6 +49,11 @@ if [[ ! "$confirm" =~ ^[yY](es)?$ ]]; then
     exit 0
 fi
 
+echo "Cleaning existing firmware and screen asset files from $SD_PATH..."
+rm -rf "$SD_PATH/mks_pic" "$SD_PATH/mks_font" "$SD_PATH/bak_pic" "$SD_PATH/bak_font"
+rm -f "$SD_PATH/Robin_nano35.bin" "$SD_PATH/ROBIN_NANO35.CUR" "$SD_PATH/robin_nano35.cur" "$SD_PATH/mks_pft.sys"
+rm -f "$SD_PATH/robin_nano35_cfg.txt" "$SD_PATH/robin_nano35_cfg.CUR" "$SD_PATH/robin_nano35_cfg.cur"
+
 echo "Copying firmware files to $SD_PATH..."
 
 # Ensure we are in script directory
