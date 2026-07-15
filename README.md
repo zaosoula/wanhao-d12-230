@@ -4,17 +4,33 @@ Custom firmware configurations, asset generation tools, and automatic installati
 
 ---
 
-## 📂 Repository Structure
+## 🖥️ Web GUI Interface (Nuxt App)
+The repository contains a Web Flasher & Controller under the `gui/` directory:
+- **Web Flasher**: Generates custom `robin_nano35_cfg.txt` configurations with presets like Bed PID, BLTouch homing, and WiFi details.
+- **Bed Mesh Visualizer**: Renders 3D leveling topology in real-time.
+- **MKS WiFi Center**: Provides a customcompiled ESP8266 WiFi binary with tutorial guides.
 
-*   **[firmware/](file:///Users/zaosoula/Github/wanhao-d12-230/firmware/)**: Active custom firmware binary, config file, and touchscreen UI assets.
-    *   [robin_nano35_cfg.txt](file:///Users/zaosoula/Github/wanhao-d12-230/firmware/robin_nano35_cfg.txt): Custom configuration (Marlin parameters, UI macros, Wi-Fi config placeholders).
-    *   `mks_pic/`: touchscreen icon assets (`.bin` files).
-    *   `mks_font/`: touchscreen font assets.
-*   **[firmware/original_backup/](file:///Users/zaosoula/Github/wanhao-d12-230/firmware/original_backup/)**: Original factory firmware binary and configuration backups.
-*   **[scripts/](file:///Users/zaosoula/Github/wanhao-d12-230/scripts/)**: Automated tools and installation helpers:
-    *   [install_firmware.sh](file:///Users/zaosoula/Github/wanhao-d12-230/scripts/install_firmware.sh): Interactive macOS SD card flasher and Wi-Fi credential provisioner.
-    *   [generate_custom_icons.py](file:///Users/zaosoula/Github/wanhao-d12-230/scripts/generate_custom_icons.py): Programmatic pixel-art button generator.
-    *   [bmp_to_bin.py](file:///Users/zaosoula/Github/wanhao-d12-230/scripts/bmp_to_bin.py): 24-bit BMP to MKS Little-Endian RGB565 `.bin` converter.
+To start the local GUI server:
+```bash
+cd gui
+npm install
+npm run dev # Access at http://localhost:3000
+```
+
+---
+
+## 📶 Custom MKS WiFi Firmware
+Our custom ESP8266 WiFi firmware provides:
+- **mDNS Hostname Support**: Connect directly via **`http://mkswifi.local`** instead of raw IP.
+- **Socket Buffering Optimizations**: Prevents connection drops on port `8080` raw TCP bridge (useful for streaming serial data).
+- **English Translated Config**: Full English comments and UI labels on the ESP8266 admin portal.
+
+### Compiling WiFi Firmware:
+Run the compiler script:
+```bash
+./scripts/compile_wifi.sh
+```
+This automatically compiles the ESP8266 firmware and copies the output `MksWifi.bin` directly into the Web GUI static resources folder (`gui/public/firmware/wifi/`).
 
 ---
 
@@ -33,11 +49,6 @@ Custom firmware configurations, asset generation tools, and automatic installati
 ## 🚀 Flashing Instructions
 
 1.  Plug your SD Card into your Mac.
-2.  Run the interactive installer from the repository root:
-    ```bash
-    ./scripts/install_firmware.sh
-    ```
-3.  **Select Volume**: Select the menu number corresponding to your SD card. The script will auto-detect and highlight standard printer SD cards containing `.CUR` backup files.
-4.  **Configure Wi-Fi**: When prompted, enter your SSID and Password. The script will temporarily patch these settings into the config file copied to the SD card, keeping placeholders (`YOUR_WIFI_SSID` / `YOUR_WIFI_PASSWORD`) in the repository file to prevent leaking credentials to Git.
-5.  **Sync & Eject**: The script will flush all writes and safely unmount the card.
-6.  **Flash Printer**: Insert the SD card into your Wanhao D12/230 while it is powered off, then turn it on. The firmware and assets will flash automatically.
+2.  Open the Web GUI, configure your settings, and click **Flash** to automatically write `Robin_nano35.bin` and the customized configuration file to the SD card.
+3.  **Flash Printer**: Insert the SD card into your Wanhao D12/230 while it is powered off, then turn it on. The firmware and assets will flash automatically.
+
