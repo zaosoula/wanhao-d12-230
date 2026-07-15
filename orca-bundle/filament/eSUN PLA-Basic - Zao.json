@@ -1,0 +1,42 @@
+{
+	"compatible_printers": [
+		"D12 230 PRO M2 MONO DUAL 0.4 nozzle"
+	],
+	"default_filament_colour": [
+		"#FFFFFF"
+	],
+	"filament_cost": [
+		"13.7"
+	],
+	"filament_extruder_variant": [
+		"Direct Drive Standard"
+	],
+	"filament_max_volumetric_speed": [
+		"15"
+	],
+	"filament_settings_id": [
+		"eSUN PLA-Basic - Zao"
+	],
+	"from": "User",
+	"inherits": "eSUN PLA-Basic @System",
+	"name": "eSUN PLA-Basic - Zao",
+	"nozzle_temperature": [
+		"218"
+	],
+	"nozzle_temperature_initial_layer": [
+		"218"
+	],
+	"nozzle_temperature_range_high": [
+		"230"
+	],
+	"nozzle_temperature_range_low": [
+		"210"
+	],
+	"pressure_advance": [
+		"1"
+	],
+	"pressure_advance_value": [
+		"0.150"
+	],
+	"version": "2.4.0.3"
+}

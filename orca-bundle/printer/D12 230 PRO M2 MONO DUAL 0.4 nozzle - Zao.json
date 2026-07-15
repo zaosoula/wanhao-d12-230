@@ -1,0 +1,289 @@
+{
+	"adaptive_bed_mesh_margin": "0",
+	"auxiliary_fan": "0",
+	"bbl_use_printhost": "0",
+	"bed_custom_model": "",
+	"bed_custom_texture": "",
+	"bed_exclude_area": [
+		"0x0"
+	],
+	"bed_mesh_max": "99999,99999",
+	"bed_mesh_min": "-99999,-99999",
+	"bed_mesh_probe_distance": "50,50",
+	"bed_temperature_formula": "by_highest_temp",
+	"before_layer_change_gcode": ";BEFORE_LAYER_CHANGE\n;[layer_z]\nG92 E0",
+	"best_object_pos": "0.5,0.5",
+	"change_extrusion_role_gcode": "",
+	"change_filament_gcode": "",
+	"cooling_tube_length": "5",
+	"cooling_tube_retraction": "91.5",
+	"default_bed_type": "",
+	"default_filament_profile": [
+		"YUMI PLA Bowden"
+	],
+	"default_nozzle_volume_type": [
+		"Standard"
+	],
+	"default_print_profile": "0.20mm Standard @Wanhao-D12-230",
+	"deretraction_speed": [
+		"25"
+	],
+	"disable_m73": "0",
+	"emit_machine_limits_to_gcode": "1",
+	"enable_filament_ramming": "0",
+	"enable_long_retraction_when_cut": "0",
+	"enable_power_loss_recovery": "printer_configuration",
+	"extra_loading_move": "-2",
+	"extruder_clearance_height_to_lid": "140",
+	"extruder_clearance_height_to_rod": "36",
+	"extruder_clearance_radius": "65",
+	"extruder_colour": [
+		"#FCE94F"
+	],
+	"extruder_offset": [
+		"0x0"
+	],
+	"extruder_printable_area": [],
+	"extruder_printable_height": [
+		"0"
+	],
+	"extruder_type": [
+		"Direct Drive"
+	],
+	"extruder_variant_list": [
+		"Direct Drive Standard"
+	],
+	"fan_kickstart": "0",
+	"fan_speedup_overhangs": "1",
+	"fan_speedup_time": "0",
+	"file_start_gcode": "",
+	"flashforge_serial_number": "",
+	"from": "User",
+	"gcode_flavor": "marlin2",
+	"grab_length": [
+		"0"
+	],
+	"head_wrap_detect_zone": [],
+	"high_current_on_filament_swap": "0",
+	"host_type": "mks",
+	"inherits": "D12 230 PRO M2 MONO DUAL 0.4 nozzle",
+	"input_shaping_damp_x": "0.1",
+	"input_shaping_damp_y": "0.1",
+	"input_shaping_emit": "0",
+	"input_shaping_freq_x": "0",
+	"input_shaping_freq_y": "0",
+	"input_shaping_type": "Default",
+	"layer_change_gcode": "",
+	"long_retractions_when_cut": [
+		"0"
+	],
+	"machine_end_gcode": "; Wanhao D12-230 Default End Gcode\nG91                     ; Mode déplacement relatif\nG1 E-2 F300             ; Retrait léger du filament pour éviter le suintement\nG1 Z10 F1200             ; Monte la tête de 10 mm\nG90                     ; Retour en position absolue\nG1 X0 Y220 F3000         ; Déplace la tête vers l'arrière pour dégager la pièce\nM104 S0                  ; Éteint la chauffe de la buse\nM140 S0                  ; Éteint la chauffe du plateau\nM107                     ; Arrête tous les ventilateurs\nM106 S0 P3               ; Arrête le ventilateur de la carte mère\nM106 S0 P2               ; Arrête le ventilateur auxiliaire\nM84 X Y E                ; Désactive les moteurs des axes X, Y et de l'extrudeur\nM204 P2000 R2000",
+	"machine_load_filament_time": "0",
+	"machine_max_acceleration_e": [
+		"6000",
+		"6000"
+	],
+	"machine_max_acceleration_extruding": [
+		"10000",
+		"10000"
+	],
+	"machine_max_acceleration_retracting": [
+		"5000",
+		"5000"
+	],
+	"machine_max_acceleration_travel": [
+		"5000",
+		"500"
+	],
+	"machine_max_acceleration_x": [
+		"1200",
+		"1200"
+	],
+	"machine_max_acceleration_y": [
+		"1000",
+		"1000"
+	],
+	"machine_max_acceleration_z": [
+		"500",
+		"500"
+	],
+	"machine_max_jerk_e": [
+		"2.5",
+		"2.5"
+	],
+	"machine_max_jerk_x": [
+		"14",
+		"14"
+	],
+	"machine_max_jerk_y": [
+		"14",
+		"14"
+	],
+	"machine_max_jerk_z": [
+		"0.2",
+		"0.2"
+	],
+	"machine_max_junction_deviation": [
+		"0.01"
+	],
+	"machine_max_speed_e": [
+		"50",
+		"50"
+	],
+	"machine_max_speed_x": [
+		"200",
+		"200"
+	],
+	"machine_max_speed_y": [
+		"200",
+		"200"
+	],
+	"machine_max_speed_z": [
+		"15",
+		"15"
+	],
+	"machine_min_extruding_rate": [
+		"0"
+	],
+	"machine_min_travel_rate": [
+		"0"
+	],
+	"machine_pause_gcode": "M600",
+	"machine_start_gcode": "M413 S1                            ; Enable Marlin power loss recovery\nG21                                ; Set metric units\nG90                                ; Absolute positioning\nM82                                ; Absolute extruder mode\n\n; 1. Heat nozzle to standby temp (150C) to prevent oozing while homing/heating bed\nM140 S[bed_temperature_initial_layer_single]  ; Set bed temp\nM104 S150                          ; Set nozzle to standby temp (150C)\n\nG28                                ; Home all axes\nM420 S1                            ; Load stored bed mesh from EEPROM\n\nG1 X{print_bed_max[0] / 2 - 20} Y0 Z10 F6000                ; Park head directly above purge start during final heatup\nM190 S[bed_temperature_initial_layer_single]  ; Wait bed temp\nM109 S[nozzle_temperature_initial_layer]      ; Wait nozzle printing temp\n\nG92 E0                             ; Reset extruder\nG1 Z1.0 F3000                      ; Lift nozzle (pre-purge height)\nM83                                ; Relative extruder mode\n\n; Purge line front edge (centered X=95 to X=135)\nG1 Z0.3 F3000                      ; Move down to bed surface at start position\nG1 X{print_bed_max[0] / 2 + 20} Y0 Z0.3 F750 E1.5          ; Purge Line 1 (clamped relative extrusion)\nG1 X{print_bed_max[0] / 2 - 20} Y1 Z0.3 F5000              ; Move back Y=1\nG1 X{print_bed_max[0] / 2 + 20} Y1 Z0.3 F750 E1.5          ; Purge Line 2 (clamped relative extrusion)\n\nG1 E-1.0 F1800                     ; Retract 1mm (anti-stringing relative retraction)\nM82                                ; Absolute extruder mode\nG92 E0                             ; Reset extruder\nG1 Z1.0 F3000                      ; Lift nozzle",
+	"machine_tool_change_time": "0",
+	"machine_unload_filament_time": "0",
+	"manual_filament_change": "0",
+	"master_extruder_id": "1",
+	"max_layer_height": [
+		"0.32"
+	],
+	"max_resonance_avoidance_speed": "120",
+	"min_layer_height": [
+		"0.08"
+	],
+	"min_resonance_avoidance_speed": "70",
+	"name": "D12 230 PRO M2 MONO DUAL 0.4 nozzle - Zao",
+	"nozzle_diameter": [
+		"0.4"
+	],
+	"nozzle_flush_dataset": [
+		"0"
+	],
+	"nozzle_height": "4",
+	"nozzle_hrc": "0",
+	"nozzle_type": [
+		"brass"
+	],
+	"nozzle_volume": [
+		"0"
+	],
+	"parallel_printheads_bed_exclude_areas": [],
+	"parallel_printheads_count": "1",
+	"parking_pos_retraction": "92",
+	"part_cooling_fan_min_pwm": "0",
+	"pellet_modded_printer": "0",
+	"physical_extruder_map": [
+		"0"
+	],
+	"preferred_orientation": "0",
+	"printable_area": [
+		"0x0",
+		"230x0",
+		"230x230",
+		"0x230"
+	],
+	"printable_height": "240",
+	"printer_agent": "",
+	"printer_extruder_id": [
+		"1"
+	],
+	"printer_extruder_variant": [
+		"Direct Drive Standard"
+	],
+	"printer_model": "D12 230 PRO M2 MONO DUAL",
+	"printer_notes": "",
+	"printer_settings_id": "D12 230 PRO M2 MONO DUAL 0.4 nozzle - Zao",
+	"printer_structure": "undefine",
+	"printer_technology": "FFF",
+	"printer_variant": "0.4",
+	"printhost_authorization_type": "key",
+	"printhost_ssl_ignore_revoke": "0",
+	"printing_by_object_gcode": "",
+	"purge_in_prime_tower": "1",
+	"resonance_avoidance": "0",
+	"retract_before_wipe": [
+		"0%"
+	],
+	"retract_length_toolchange": [
+		"70"
+	],
+	"retract_lift_above": [
+		"0"
+	],
+	"retract_lift_below": [
+		"0"
+	],
+	"retract_lift_enforce": [
+		"All Surfaces"
+	],
+	"retract_restart_extra": [
+		"0"
+	],
+	"retract_restart_extra_toolchange": [
+		"0"
+	],
+	"retract_when_changing_layer": [
+		"0"
+	],
+	"retraction_distances_when_cut": [
+		"18"
+	],
+	"retraction_length": [
+		"5"
+	],
+	"retraction_minimum_travel": [
+		"2"
+	],
+	"retraction_speed": [
+		"25"
+	],
+	"scan_first_layer": "0",
+	"silent_mode": "0",
+	"single_extruder_multi_material": "1",
+	"support_air_filtration": "0",
+	"support_chamber_temp_control": "0",
+	"support_multi_bed_types": "1",
+	"support_object_skip_flush": "0",
+	"support_parallel_printheads": "0",
+	"template_custom_gcode": ";;;;;;;;;;;;;;;;;;;;;;;;CUSTOM G-CODE;;;;;;;;;;;;;;;;;;;;;;;;\n{if curr_bed_type==\"Textured PEI Plate\"}\n SET_GCODE_OFFSET Z=-0.00\n{else}\nSET_GCODE_OFFSET Z=0.0\n{endif}\n{if curr_bed_type==\"Cool Plate\"}\n\n;available bed types are:\n;\"Cool Plate\"\n;\"Engineering Plate\"\n;\"High Temp Plate\"\n;\"Textured PEI Plate\"\n;;;;;;;;;;;;;;;;;;;;;;;;;CUSTOM G-CODE;;;;;;;;;;;;;;;;;;;;;;;;\n",
+	"thumbnails": "48x48/PNG, 300x300/PNG",
+	"thumbnails_format": "PNG",
+	"time_cost": "0",
+	"time_lapse_gcode": "",
+	"tool_change_on_wipe_tower": "0",
+	"travel_slope": [
+		"3"
+	],
+	"upward_compatible_machine": [],
+	"use_3mf": "0",
+	"use_firmware_retraction": "0",
+	"use_relative_e_distances": "1",
+	"version": "2.4.0.2",
+	"wipe": [
+		"1"
+	],
+	"wipe_distance": [
+		"2"
+	],
+	"wipe_tower_type": "type2",
+	"wrapping_detection_gcode": "",
+	"wrapping_detection_layers": "20",
+	"wrapping_exclude_area": [],
+	"z_hop": [
+		"0.4"
+	],
+	"z_hop_types": [
+		"Auto Lift"
+	],
+	"z_offset": "0"
+}
